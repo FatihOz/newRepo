@@ -7,7 +7,10 @@
         <methods>
           <include name="tearDown"/>
           <include name="setUp"/>
+          <include name="muiltipleSelectOptions"/>
+          <include name="selectMenuForCars"/>
           <include name="negatifLoginTest"/>
+          <include name="radioBtnSelect"/>
         </methods>
       </class> <!-- com.letKodeit.Tests.PracticePageTest -->
     </classes>

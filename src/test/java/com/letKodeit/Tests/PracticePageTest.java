@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.hc.core5.util.Asserts;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
@@ -52,7 +53,7 @@ public class PracticePageTest extends TestBase {
 		BrowserUtils.waitFor(3);
 		lp.userPassword.sendKeys(ConfigurationReader.getProperty("userPWD1"));
 		BrowserUtils.waitFor(3);
-
+		BrowserUtils.getScreenshot("InvalidLogin");
 		lp.loginBtn2.click();
 		// BrowserUtils.getScreenshot("InvalidLogin");
 
@@ -67,7 +68,7 @@ public class PracticePageTest extends TestBase {
 	}
 
 	@Test(priority = 1)
-	public void verifyHomePage() throws Exception {
+	public void verifyPracticeHomePage() throws Exception {
 
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
@@ -152,18 +153,50 @@ public class PracticePageTest extends TestBase {
 		List<WebElement> selectedOptions = select.getAllSelectedOptions();
 
 		for (WebElement selectedOption : selectedOptions) {
-			System.out.println("========="+selectedOption.getText());
+			System.out.println("=========" + selectedOption.getText());
 		}
-		if(multiOp.containsAll(selectedOptions)) {
+		if (multiOp.containsAll(selectedOptions)) {
 			System.out.println("True");
-		}else {
+		} else {
 			System.out.println("False");
 		}
-		
 
 		System.out.println();
 		System.out.println(
 				"============================================  Test 5  ======================================");
 	}
 
+	@Test(priority = 5)
+	public void radioBtnSelect() throws InterruptedException {
+
+		hp.practiceBtn.click();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+		List<WebElement> RadioBTN = pp.listRadio;
+		System.out.println("Size by checked Boxes : " + RadioBTN.size());
+
+		String radioSTR = "";
+
+		for (int i = 0; i < RadioBTN.size(); i++) {
+
+			radioSTR = RadioBTN.get(i).getAttribute("value");
+
+			if (RadioBTN.get(i).isEnabled()) {
+				if (radioSTR.equalsIgnoreCase("Benz")) {
+					RadioBTN.get(i).click();
+				}
+				System.out.println("List of CheckBox : " + radioSTR);
+			}
+			if(RadioBTN.get(i).isSelected()) {
+				System.out.println("Selected check box : "+RadioBTN.get(i).getAttribute("value"));
+			}
+		}
+		
+		Thread.sleep(3000);
+
+		System.out.println();
+		System.out.println(
+				"============================================  Test 6  ======================================");
+
+	}
 }

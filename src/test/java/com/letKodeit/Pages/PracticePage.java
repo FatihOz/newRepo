@@ -1,9 +1,13 @@
 package com.letKodeit.Pages;
 
 
+import java.util.List;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.PageFactory;
 import com.letKodeit.Utilities.*;
 public class PracticePage {
@@ -42,5 +46,23 @@ public class PracticePage {
 		
 		@FindBy(id="multiple-select-example")
 		public WebElement multipleSelectOptions;
-	
+		
+		@FindAll({
+			@FindBy(id="bmwradio"),
+			@FindBy(id="benzradio"),
+			@FindBy(id="hondaradio")	
+		})
+		public List<WebElement> listOfRadioBtn;
+		
+		@FindBy(xpath = "//input[@name ='cars' and @type='radio']")
+		public List<WebElement> listRadio;
+		
+		@FindBy(id="bmwradio")
+		public WebElement bmwRadioBtn;
+		
+		@FindBy(id="benzradio")
+		public WebElement benzRadioBtn;
+		
+		@FindBy(id="hondaradio")
+		public WebElement hondaRadioBtn;
 }
